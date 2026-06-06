@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Seamless Checkout - KIKI</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-background": "#1c1b1b",
+                "primary": "#2a1059",
+                "primary-container": "#402970",
+                "surface-bright": "#fcf9f8",
+                "on-secondary-container": "#716200",
+                "secondary-fixed-dim": "#e2c600",
+                "secondary-container": "#fee016",
+                "tertiary-fixed-dim": "#d4bbff",
+                "on-surface": "#1c1b1b",
+                "tertiary-container": "#432673",
+                "inverse-primary": "#d1bcff",
+                "on-secondary-fixed": "#211b00",
+                "error-container": "#ffdad6",
+                "surface-container-low": "#f6f3f2",
+                "on-primary": "#ffffff",
+                "error": "#ba1a1a",
+                "secondary": "#6c5e00",
+                "surface-container-highest": "#e5e2e1",
+                "surface-container-high": "#eae7e7",
+                "tertiary": "#2c0b5d",
+                "outline-variant": "#cbc4d1",
+                "on-primary-fixed-variant": "#503981",
+                "inverse-on-surface": "#f3f0ef",
+                "background": "#fcf9f8",
+                "primary-fixed-dim": "#d1bcff",
+                "surface-variant": "#e5e2e1",
+                "on-tertiary": "#ffffff",
+                "outline": "#7a7581",
+                "surface-container": "#f0eded",
+                "inverse-surface": "#313030",
+                "surface-dim": "#dcd9d9",
+                "on-surface-variant": "#494550",
+                "on-error-container": "#93000a",
+                "primary-fixed": "#eaddff",
+                "on-secondary-fixed-variant": "#524700",
+                "on-tertiary-fixed": "#260257",
+                "on-tertiary-fixed-variant": "#533784",
+                "on-secondary": "#ffffff",
+                "surface-tint": "#68519a",
+                "on-primary-container": "#ac94e2",
+                "surface-container-lowest": "#ffffff",
+                "on-error": "#ffffff",
+                "tertiary-fixed": "#ebdcff",
+                "surface": "#fcf9f8",
+                "on-primary-fixed": "#230653",
+                "secondary-fixed": "#ffe33b",
+                "on-tertiary-container": "#af91e5"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "xl": "80px",
+                "xs": "4px",
+                "margin-mobile": "16px",
+                "md": "24px",
+                "sm": "12px",
+                "base": "8px",
+                "margin-desktop": "64px",
+                "gutter": "24px",
+                "lg": "48px",
+                "stack-sm": "8px",
+                "stack-md": "16px",
+                "stack-lg": "32px"
+        },
+        "fontFamily": {
+                "label-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-lg-mobile": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-caps": [
+                        "Plus Jakarta Sans"
+                ],
+                "chat-bubble": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.08em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-sm": [
+                        "20px",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "28px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ],
+                "label-caps": [
+                        "12px",
+                        {
+                                "lineHeight": "1.0",
+                                "letterSpacing": "0.1em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "chat-bubble": [
+                        "15px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "500"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+<style>
+        .blob {
+            position: absolute;
+            filter: blur(80px);
+            z-index: 0;
+            opacity: 0.6;
+            animation: float 20s infinite alternate ease-in-out;
+        }
+        .blob-1 {
+            background: #d1bcff;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            top: -10%;
+            left: -10%;
+            animation-duration: 25s;
+        }
+        .blob-2 {
+            background: #fee016;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            bottom: -20%;
+            right: -10%;
+            animation-duration: 20s;
+        }
+        @keyframes float {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            100% { transform: translate(150px, 100px) scale(1.2) rotate(45deg); }
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 30px 60px rgba(42, 16, 89, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+        }
+        
+        .floating-glass-pane {
+            background: rgba(252, 249, 248, 0.3);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05), inset 0 2px 15px rgba(255, 255, 255, 0.4);
+            transform: translateZ(0);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .floating-glass-pane:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), inset 0 2px 15px rgba(255, 255, 255, 0.5);
+        }
+
+        .glass-input {
+            background: rgba(255, 255, 255, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-input:focus {
+            background: rgba(255, 255, 255, 0.8);
+            border-color: transparent;
+            box-shadow: inset 0 2px 5px rgba(0,0,0,0.02), 0 0 0 2px rgba(255,255,255,0.8), 0 0 25px rgba(64, 41, 112, 0.2);
+            outline: none;
+        }
+
+        .liquid-button {
+            background: linear-gradient(135deg, rgba(254, 224, 22, 0.85), rgba(248, 218, 8, 0.95));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: 0 8px 32px rgba(248, 218, 8, 0.3), inset 0 2px 15px rgba(255, 255, 255, 0.6);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        .liquid-button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+            transform: skewX(-20deg);
+            transition: all 0.5s;
+        }
+        .liquid-button:hover::before {
+            left: 150%;
+            transition: all 0.7s;
+        }
+        .liquid-button:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(248, 218, 8, 0.4), inset 0 2px 20px rgba(255, 255, 255, 0.8);
+        }
+        
+        .pulsing-dot {
+            animation: pulse 1.5s infinite;
+        }
+        .pulsing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .pulsing-dot:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.4; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body class="min-h-screen font-body-md text-on-surface antialiased flex flex-col justify-center items-center p-margin-mobile md:p-margin-desktop bg-surface relative overflow-hidden">
+<!-- Liquid Blobs Background -->
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<!-- Progress Indicator -->
+<div class="fixed top-0 left-0 w-full z-50 p-stack-md flex justify-center pointer-events-none">
+<div class="glass-panel rounded-full px-6 py-3 flex items-center gap-4">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#F8DA08]" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-caps text-label-caps text-on-surface">CART</span>
+</div>
+<div class="w-8 h-[2px] bg-surface-variant"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary-container" style="font-variation-settings: 'FILL' 1;">radio_button_checked</span>
+<span class="font-label-caps text-label-caps text-primary-container">CHECKOUT</span>
+</div>
+<div class="w-8 h-[2px] bg-surface-variant"></div>
+<div class="flex items-center gap-2 opacity-50">
+<span class="material-symbols-outlined text-on-surface-variant">radio_button_unchecked</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant">DONE</span>
+</div>
+</div>
+</div>
+<main class="w-full max-w-3xl glass-panel rounded-2xl p-stack-lg md:p-[40px] flex flex-col gap-stack-lg relative mt-16 md:mt-0 z-10">
+<!-- Header -->
+<header class="flex justify-between items-end border-b border-surface-variant/50 pb-stack-md">
+<div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary-container">Complete Order</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-2">Almost there, let's finalize the details.</p>
+</div>
+<div class="text-right">
+<p class="font-label-caps text-label-caps text-on-surface-variant mb-1">TOTAL</p>
+<p class="font-headline-lg text-headline-lg text-primary-container">$345.00</p>
+</div>
+</header>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<!-- Order Summary Section -->
+<section class="flex flex-col gap-stack-md order-2 md:order-1 floating-glass-pane rounded-xl p-stack-md">
+<h2 class="font-label-caps text-label-caps text-on-surface-variant">ORDER SUMMARY</h2>
+<div class="flex items-center gap-4 bg-surface-container-lowest/60 rounded-lg p-3">
+<div class="w-16 h-16 rounded-md bg-surface-variant overflow-hidden shrink-0">
+<img alt="Leather shoes" class="w-full h-full object-cover" data-alt="A pair of premium brown leather oxford shoes displayed on a sleek minimalist pedestal. The lighting is soft and studio-quality, highlighting the rich texture of the leather. The background is a clean, neutral gradient. The overall aesthetic is high-end and sophisticated, matching a luxury retail experience." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8X3BYuD3UOIEPUVAbZomexym3MH4-ygJRWm7Z5XSDjzuexwdQI3MEf5fddkADMYQ88IjMSiN5ha92D7esum1Ql_yszqGztkYs7YIkEl_Eu4vibN5MJFGiJry-Y3liHv_XSIp4Oju9NJh4LZRd8u5U45W4s7rXwbji5m5jzCYsVMBsVO9lNxzU9BiOq6p1jkprQPMA8MOiPk5ZlpMn24xdySS8vZhVKdj7uGFI_0f0_yVaYIHUA6G5W3pUmIDPFxRwbr37yLp_iVK8"/>
+</div>
+<div class="flex-grow">
+<p class="font-body-lg text-body-lg text-on-surface">Classic Oxfords</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Size 10, Brown</p>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface font-medium">$295.00</p>
+</div>
+<div class="flex items-center gap-4 bg-surface-container-lowest/60 rounded-lg p-3">
+<div class="w-16 h-16 rounded-md bg-surface-variant overflow-hidden shrink-0 flex items-center justify-center">
+<span class="material-symbols-outlined text-outline text-[32px]">redeem</span>
+</div>
+<div class="flex-grow">
+<p class="font-body-lg text-body-lg text-on-surface">Gift Wrap &amp; Note</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Premium packaging</p>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface font-medium">$15.00</p>
+</div>
+<div class="mt-auto pt-4 border-t border-surface-variant/50 border-dashed flex justify-between">
+<span class="font-body-md text-body-md text-on-surface-variant">Shipping</span>
+<span class="font-body-md text-body-md text-on-surface">$35.00</span>
+</div>
+</section>
+<!-- Delivery Form Section -->
+<section class="flex flex-col gap-stack-md order-1 md:order-2">
+<!-- KIKI Bubble -->
+<div class="bg-surface-bright/80 backdrop-blur-md rounded-2xl rounded-tl-none p-4 shadow-sm border border-surface-variant flex items-start gap-3 mb-2">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center shrink-0">
+<span class="font-headline-lg text-[16px] text-on-primary font-bold">K</span>
+</div>
+<div>
+<p class="font-chat-bubble text-chat-bubble text-on-surface flex items-center gap-2">
+                            Validating delivery to Colombo
+                            <span class="flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container pulsing-dot"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container pulsing-dot"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-primary-container pulsing-dot"></span>
+</span>
+</p>
+</div>
+</div>
+<form class="flex flex-col gap-4">
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2" for="recipient">RECIPIENT NAME</label>
+<input class="glass-input w-full rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline-variant" id="recipient" placeholder="John Doe" type="text"/>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2" for="address">DELIVERY ADDRESS</label>
+<input class="glass-input w-full rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline-variant mb-3" id="address" placeholder="123 Main St, Apt 4B" type="text"/>
+<div class="grid grid-cols-2 gap-3">
+<input class="glass-input w-full rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline-variant" placeholder="City" type="text" value="Colombo"/>
+<input class="glass-input w-full rounded-lg px-4 py-3 font-body-md text-body-md text-on-surface placeholder:text-outline-variant" placeholder="Postal Code" type="text"/>
+</div>
+</div>
+<div>
+<label class="font-label-caps text-label-caps text-on-surface-variant block mb-2">PAYMENT METHOD</label>
+<div class="glass-input rounded-lg px-4 py-3 flex items-center justify-between cursor-pointer">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant">credit_card</span>
+<span class="font-body-md text-body-md text-on-surface">•••• •••• •••• 4242</span>
+</div>
+<span class="font-body-md text-body-md text-primary-container">Edit</span>
+</div>
+</div>
+</form>
+</section>
+</div>
+<!-- Action Footer -->
+<footer class="flex justify-end pt-stack-md border-t border-surface-variant/50 mt-4">
+<button class="liquid-button text-primary-container rounded-full px-8 py-4 font-body-lg text-body-lg font-bold flex items-center gap-2">
+                Place Order
+                <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</footer>
+</main>
+</body></html>

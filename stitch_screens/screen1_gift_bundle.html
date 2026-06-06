@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>KIKI - Smart Visual Bundle</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer {
+            100% { left: 200%; }
+        }
+
+        /* Liquid Glass Additions */
+        @keyframes liquidFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        .liquid-float {
+            animation: liquidFloat 5s ease-in-out infinite;
+        }
+        .liquid-float-delay-1 {
+            animation: liquidFloat 5s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+        .liquid-float-delay-2 {
+            animation: liquidFloat 5s ease-in-out infinite;
+            animation-delay: 2.5s;
+        }
+
+        .liquid-btn {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            transition: color 0.4s ease;
+        }
+        .liquid-btn::before {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 150%;
+            background-color: #F8DA08; /* gold */
+            z-index: -1;
+            transition: top 0.5s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.5s ease;
+            border-radius: 50% 50% 0 0;
+        }
+        .liquid-btn:hover::before {
+            top: 0;
+            border-radius: 0;
+        }
+        .liquid-btn:hover {
+            color: #716200 !important; /* text-on-secondary-container */
+        }
+
+        @keyframes dropReveal {
+            0% { opacity: 0; transform: translateY(-40px) scale(0.95); filter: blur(10px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        .drop-reveal {
+            animation: dropReveal 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            opacity: 0;
+        }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.3s; }
+        .delay-3 { animation-delay: 0.5s; }
+
+        .liquid-glass {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+        .dark .liquid-glass {
+            background: rgba(30, 30, 30, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        "colors": {
+                "on-background": "#1c1b1b",
+                "primary": "#2a1059",
+                "primary-container": "#402970",
+                "surface-bright": "#fcf9f8",
+                "on-secondary-container": "#716200",
+                "secondary-fixed-dim": "#e2c600",
+                "secondary-container": "#fee016",
+                "tertiary-fixed-dim": "#d4bbff",
+                "on-surface": "#1c1b1b",
+                "tertiary-container": "#432673",
+                "inverse-primary": "#d1bcff",
+                "on-secondary-fixed": "#211b00",
+                "error-container": "#ffdad6",
+                "surface-container-low": "#f6f3f2",
+                "on-primary": "#ffffff",
+                "error": "#ba1a1a",
+                "secondary": "#6c5e00",
+                "surface-container-highest": "#e5e2e1",
+                "surface-container-high": "#eae7e7",
+                "tertiary": "#2c0b5d",
+                "outline-variant": "#cbc4d1",
+                "on-primary-fixed-variant": "#503981",
+                "inverse-on-surface": "#f3f0ef",
+                "background": "#fcf9f8",
+                "primary-fixed-dim": "#d1bcff",
+                "surface-variant": "#e5e2e1",
+                "on-tertiary": "#ffffff",
+                "outline": "#7a7581",
+                "surface-container": "#f0eded",
+                "inverse-surface": "#313030",
+                "surface-dim": "#dcd9d9",
+                "on-surface-variant": "#494550",
+                "on-error-container": "#93000a",
+                "primary-fixed": "#eaddff",
+                "on-secondary-fixed-variant": "#524700",
+                "on-tertiary-fixed": "#260257",
+                "on-tertiary-fixed-variant": "#533784",
+                "on-secondary": "#ffffff",
+                "surface-tint": "#68519a",
+                "on-primary-container": "#ac94e2",
+                "surface-container-lowest": "#ffffff",
+                "on-error": "#ffffff",
+                "tertiary-fixed": "#ebdcff",
+                "surface": "#fcf9f8",
+                "on-primary-fixed": "#230653",
+                "secondary-fixed": "#ffe33b",
+                "on-tertiary-container": "#af91e5",
+                "gold": "#F8DA08",
+                "surface-glass": "rgba(252, 249, 248, 0.8)"
+        },
+        "borderRadius": {
+                "DEFAULT": "0.25rem",
+                "lg": "0.5rem",
+                "xl": "0.75rem",
+                "full": "9999px"
+        },
+        "spacing": {
+                "xl": "80px",
+                "xs": "4px",
+                "margin-mobile": "16px",
+                "md": "24px",
+                "sm": "12px",
+                "base": "8px",
+                "margin-desktop": "64px",
+                "gutter": "24px",
+                "lg": "48px",
+                "container-max": "1280px"
+        },
+        "fontFamily": {
+                "label-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-lg": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-lg-mobile": [
+                        "Plus Jakarta Sans"
+                ],
+                "label-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-md": [
+                        "Plus Jakarta Sans"
+                ],
+                "body-sm": [
+                        "Plus Jakarta Sans"
+                ],
+                "headline-md": [
+                        "Plus Jakarta Sans"
+                ]
+        },
+        "fontSize": {
+                "label-md": [
+                        "14px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-lg": [
+                        "18px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-lg": [
+                        "40px",
+                        {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-lg-mobile": [
+                        "32px",
+                        {
+                                "lineHeight": "1.2",
+                                "fontWeight": "700"
+                        }
+                ],
+                "label-sm": [
+                        "12px",
+                        {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.08em",
+                                "fontWeight": "700"
+                        }
+                ],
+                "headline-sm": [
+                        "20px",
+                        {
+                                "lineHeight": "1.4",
+                                "fontWeight": "600"
+                        }
+                ],
+                "body-md": [
+                        "16px",
+                        {
+                                "lineHeight": "1.6",
+                                "fontWeight": "400"
+                        }
+                ],
+                "body-sm": [
+                        "14px",
+                        {
+                                "lineHeight": "1.5",
+                                "fontWeight": "400"
+                        }
+                ],
+                "headline-md": [
+                        "28px",
+                        {
+                                "lineHeight": "1.3",
+                                "fontWeight": "600"
+                        }
+                ]
+        }
+},
+    },
+  }
+</script>
+</head>
+<body class="bg-background text-on-background antialiased min-h-screen relative overflow-x-hidden selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface-glass backdrop-blur-xl border-b border-white/20 shadow-sm transition-transform duration-300">
+<div class="flex justify-between items-center px-margin-mobile md:px-margin-desktop py-md max-w-container-max mx-auto">
+<div class="font-headline-lg text-headline-lg text-primary-container dark:text-primary-fixed-dim">
+                KIKI
+            </div>
+<div class="hidden">
+<!-- Search bar hidden as per JSON -->
+</div>
+<div class="flex items-center space-x-md">
+<button class="hover:opacity-80 transition-opacity flex items-center justify-center p-2 rounded-full hover:bg-surface-container text-primary-container scale-105 transition-transform duration-300">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Container: Segmented Dashboard Feel -->
+<main class="pt-[100px] pb-[120px] px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto grid grid-cols-1 md:grid-cols-12 gap-gutter min-h-screen">
+<!-- Left Column: KIKI's Proposal & Context (Mimics Chat/Assistant Sidebar) -->
+<div class="md:col-span-4 flex flex-col gap-lg">
+<!-- KIKI Chat Bubble -->
+<div class="bg-surface-glass backdrop-blur-md rounded-[2rem] rounded-tl-[0.5rem] p-lg shadow-[0_10px_30px_rgba(0,0,0,0.05)] border border-outline-variant/40">
+<div class="flex items-start gap-sm mb-md">
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary flex items-center justify-center font-bold font-body-md shrink-0">K</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface">
+                            How about a celebration bundle? I've paired premium red roses with an artisan chocolate cake and a personalized greeting card. It perfectly matches your criteria for a romantic anniversary gift.
+                        </p>
+</div>
+</div>
+<!-- Match Score Breakdown -->
+<div class="bg-surface-bright rounded-[1.5rem] p-md border border-surface-variant mt-md">
+<div class="flex items-center justify-between mb-sm">
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-widest">Gift Match Score</span>
+<div class="bg-gold text-on-secondary-container px-3 py-1 rounded-full font-bold text-sm flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined" style="font-size: 16px; font-variation-settings: 'FILL' 1;">star</span> 98%
+                        </div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-outline" style="font-size: 16px;">favorite</span> Sentiment</span>
+<span class="font-medium text-on-surface">Perfect Match</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-outline" style="font-size: 16px;">payments</span> Budget</span>
+<span class="font-medium text-gold">Under budget</span>
+</div>
+<div class="flex justify-between items-center font-body-sm text-body-sm">
+<span class="text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-outline" style="font-size: 16px;">local_shipping</span> Delivery</span>
+<span class="font-medium text-on-surface">Available Today</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Price & Action Console -->
+<div class="liquid-glass rounded-[2rem] p-lg sticky top-[120px]">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-md md:text-headline-md text-primary-container mb-sm">Bundle Price</h3>
+<div class="flex items-baseline gap-2 mb-md">
+<span class="font-headline-lg text-headline-lg text-gold">$145</span>
+<span class="text-outline line-through text-lg font-body-md">$160</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary font-medium mb-lg flex items-center gap-1">
+<span class="material-symbols-outlined" style="font-size: 16px;">savings</span> You save $15 by bundling
+                </p>
+<button class="w-full bg-primary-container text-on-primary font-body-lg text-body-lg py-4 px-6 rounded-full liquid-btn flex items-center justify-center gap-2 mb-sm shadow-md">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+                    Select Bundle
+                </button>
+<button class="w-full bg-transparent border border-outline-variant text-on-surface font-body-lg text-body-lg py-4 px-6 rounded-full hover:bg-surface-container-low transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">tune</span>
+                    Customize Bundle
+                </button>
+</div>
+</div>
+<!-- Right Column: Visual Bundle Hero (Bento/Asymmetric Layout) -->
+<div class="md:col-span-8 flex flex-col gap-gutter">
+<!-- Hero Image / Main Item -->
+<div class="relative w-full aspect-[16/9] md:aspect-[1.43] overflow-hidden group liquid-glass rounded-[2.5rem] drop-reveal delay-1">
+<div class="w-full h-full bg-gradient-to-br from-primary-container/20 to-tertiary-container/10 flex items-center justify-center"><span class="material-symbols-outlined text-primary-container/20" style="font-size: 120px;">celebration</span></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-lg left-lg right-lg flex justify-between items-end">
+<div>
+<div class="bg-surface-glass backdrop-blur-md px-4 py-2 rounded-full inline-block mb-2 border border-white/30">
+<span class="font-label-sm text-label-sm text-on-surface tracking-widest uppercase">Premium Bundle</span>
+</div>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-white drop-shadow-md">
+                            The Celebration Collection
+                        </h1>
+<p class="text-white/90 mt-2 font-body-md text-body-md max-w-md">
+                            A curated experience featuring artisan chocolates, fresh blooms, and a custom sentiment.
+                        </p>
+</div>
+</div>
+</div>
+<!-- Bundle Components (Bento Grid) -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<!-- Item 1: Roses -->
+<div class="liquid-glass rounded-[2rem] p-md transition-all hover:-translate-y-2 relative group cursor-pointer drop-reveal delay-1">
+<div class="absolute top-2 right-2 w-8 h-8 bg-surface-glass backdrop-blur-md rounded-full flex items-center justify-center z-10 border border-white/50">
+<span class="material-symbols-outlined text-primary-container" style="font-size: 18px;">check</span>
+</div>
+<div class="w-full h-40 rounded-[1.5rem] overflow-hidden mb-md flex items-center justify-center p-2">
+<img class="w-full h-full object-cover rounded-[1rem] liquid-float" data-alt="A close up, high resolution product shot of a lush bouquet of deep red velvet roses arranged in a modern, minimalist matte white ceramic vase. The lighting is soft and directional, highlighting the dew drops on the petals against a bright, airy light grey studio background. The aesthetic is premium, clean, and elegant, fitting a high-end luxury florist." src=""/>
+</div>
+<h4 class="font-body-lg text-body-lg text-primary-container font-semibold">Velvet Red Roses</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Two dozen premium stems</p>
+<div class="mt-sm text-gold font-medium font-body-sm text-body-sm">$85 Value</div>
+</div>
+<!-- Item 2: Cake -->
+<div class="liquid-glass rounded-[2rem] p-md transition-all hover:-translate-y-2 relative group cursor-pointer drop-reveal delay-2">
+<div class="absolute top-2 right-2 w-8 h-8 bg-surface-glass backdrop-blur-md rounded-full flex items-center justify-center z-10 border border-white/50">
+<span class="material-symbols-outlined text-primary-container" style="font-size: 18px;">check</span>
+</div>
+<div class="w-full h-40 rounded-[1.5rem] overflow-hidden mb-md flex items-center justify-center p-2">
+<img class="w-full h-full object-cover rounded-[1rem] liquid-float-delay-1" data-alt="An artisanal, decadent chocolate truffle cake placed on a sleek marble serving board. The cake is intricately decorated with gold leaf flakes and dark chocolate curls. The setting is bright and sophisticated, with soft natural light streaming in, creating a modern, light-mode culinary presentation." src=""/>
+</div>
+<h4 class="font-body-lg text-body-lg text-primary-container font-semibold">Artisan Truffle Cake</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Dark chocolate &amp; sea salt</p>
+<div class="mt-sm text-gold font-medium font-body-sm text-body-sm">$60 Value</div>
+</div>
+<!-- Item 3: Greeting Card -->
+<div class="liquid-glass rounded-[2rem] p-md transition-all hover:-translate-y-2 relative group cursor-pointer drop-reveal delay-3">
+<div class="absolute top-2 right-2 w-8 h-8 bg-surface-glass backdrop-blur-md rounded-full flex items-center justify-center z-10 border border-white/50">
+<span class="material-symbols-outlined text-primary-container" style="font-size: 18px;">check</span>
+</div>
+<div class="w-full h-40 rounded-[1.5rem] overflow-hidden mb-md flex items-center justify-center p-2">
+<img class="w-full h-full object-cover rounded-[1rem] shadow-sm liquid-float-delay-2" data-alt="A beautifully crafted, minimalist personalized greeting card resting on a clean white textured surface. The card features elegant gold foil typography and a soft, muted watercolor wash in the background. A premium fountain pen rests diagonally beside it. The overall look is refined, personal, and highly stylized." src=""/>
+</div>
+<h4 class="font-body-lg text-body-lg text-primary-container font-semibold">Personalized Card</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Hand-written sentiment</p>
+<div class="mt-sm text-gold font-medium font-body-sm text-body-sm">$15 Value</div>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 rounded-t-xl border-t border-white/20 bg-surface-glass backdrop-blur-xl shadow-[0_-10px_30px_rgba(0,0,0,0.05)] flex justify-around items-center px-4 pb-4 pt-2">
+<a class="flex flex-col items-center justify-center bg-primary-container text-on-primary rounded-full px-6 py-2 hover:bg-surface-container-high transition-colors active:scale-95 transition-all duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-label-sm text-label-sm mt-1 uppercase tracking-widest">Chat</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 transition-all duration-200 px-4 py-2 rounded-full" href="#">
+<span class="material-symbols-outlined">card_giftcard</span>
+<span class="font-label-sm text-label-sm mt-1 uppercase tracking-widest">Gifts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 transition-all duration-200 px-4 py-2 rounded-full" href="#">
+<span class="material-symbols-outlined">favorite</span>
+<span class="font-label-sm text-label-sm mt-1 uppercase tracking-widest">Favorites</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:bg-surface-container-high transition-colors active:scale-95 transition-all duration-200 px-4 py-2 rounded-full" href="#">
+<span class="material-symbols-outlined">history</span>
+<span class="font-label-sm text-label-sm mt-1 uppercase tracking-widest">History</span>
+</a>
+</nav>
+<!-- Floating Ask KIKI Input (Desktop/Web) - Positioned above Bottom Nav if visible -->
+<div class="hidden md:block fixed bottom-margin-desktop left-1/2 transform -translate-x-1/2 z-40 w-full max-w-2xl px-margin-mobile">
+<div class="liquid-glass rounded-full flex items-center p-2 pl-6">
+<input class="flex-grow bg-transparent border-none focus:ring-0 text-on-surface font-body-lg placeholder:text-outline-variant outline-none" placeholder="Ask KIKI to adjust the bundle..." type="text"/>
+<button class="w-12 h-12 rounded-full bg-primary-container text-on-primary flex items-center justify-center hover:opacity-90 transition-opacity ml-2 shrink-0">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">mic</span>
+</button>
+</div>
+</div>
+</body></html>
